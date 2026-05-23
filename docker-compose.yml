@@ -43,8 +43,6 @@ services:
       timeout: 10s
       retries: 3
       start_period: 40s
-    entrypoint:
-    - /app/entrypoint-monitoring.sh
     command:
     - gunicorn
     - -c
@@ -73,8 +71,6 @@ services:
     depends_on:
       redis:
         condition: service_started
-    entrypoint:
-    - /app/entrypoint-monitoring.sh
     command:
     - celery
     - -A
@@ -105,8 +101,6 @@ services:
     depends_on:
       redis:
         condition: service_started
-    entrypoint:
-    - /app/entrypoint-monitoring.sh
     command:
     - celery
     - -A
