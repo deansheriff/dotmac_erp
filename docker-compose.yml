@@ -33,12 +33,6 @@ services:
         condition: service_started
     volumes:
     - dotmac_logs:/var/log/dotmac
-    - ./static:/app/static:ro
-    - ./templates:/app/templates:ro
-    - ./app:/app/app:ro
-    - ./license:/app/license:ro
-    - ./gunicorn.conf.py:/app/gunicorn.conf.py:ro
-    - ./scripts/entrypoint-monitoring.sh:/app/entrypoint-monitoring.sh:ro
     healthcheck:
       test:
       - CMD
@@ -79,9 +73,6 @@ services:
     depends_on:
       redis:
         condition: service_started
-    volumes:
-    - ./app:/app/app:ro
-    - ./scripts/entrypoint-monitoring.sh:/app/entrypoint-monitoring.sh:ro
     entrypoint:
     - /app/entrypoint-monitoring.sh
     command:
@@ -114,9 +105,6 @@ services:
     depends_on:
       redis:
         condition: service_started
-    volumes:
-    - ./app:/app/app:ro
-    - ./scripts/entrypoint-monitoring.sh:/app/entrypoint-monitoring.sh:ro
     entrypoint:
     - /app/entrypoint-monitoring.sh
     command:
